@@ -1,0 +1,50 @@
+<%- include('../includes/head.ejs') %>
+<br><br>
+    <div class="container">
+        <% let total = 0; let cartTotal =0; %>
+        <% if (prods.length > 0) { %> 
+            <% prods.map((cart, index) => { %>
+    <div class="row">
+        <div class="col-md-9">
+        <!-- <img src="/images/1.jpg" alt=""/></li> -->
+        <br>
+        <img src="<%- cart.img_path%>" alt=""/>
+        <div class="product_control_buttons">
+            <a href="#"><img src="/images/edit.png" alt=""/></a>
+            <a href="<%- '/cart/delete/'+cart._id%>"><img src="/images/close_edit.png" alt=""/></a>
+        </div>
+        <h4><a href="#"><%- cart.product_name%></a></h4>
+        <span>1 x
+        ฿<%- cart.price%></span></li>
+        <% cartTotal =parseInt(cart.price)%>
+        <% total = total+cartTotal %>
+    <hr>
+        </div>
+    <% }) %> 
+    <% } else   { %>
+    <h1>No Products Found!</h1>
+    <% } %>
+    </div>
+    <div class="row">
+    <div class="col-md-4 ">
+        <div class="box-info-product">
+          <p class="price2"></p>
+                 <ul class="prosuct-qty">
+                      <span>Summary</span>
+                      <span class="actual"><h3>Total: ฿<%= total %></h3></span>
+                  </ul>
+                    <button type="submit" name="Submit" class="exclusive">
+                      <span>Check out</span>
+                   </button>
+         </div>
+     </div>
+    </div>
+    <div class="row">
+        <div class="login_button"><a href="/shop">Back</a></div>
+       </div>
+    </div>
+</div>
+    <br><br>
+ <%- include('../includes/end.ejs') %>
+</body>	
+</html>

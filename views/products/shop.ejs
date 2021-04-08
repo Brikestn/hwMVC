@@ -1,0 +1,71 @@
+<%- include('../includes/head.ejs') %>
+<body>
+     <div class="main">
+      <div class="shop_top">
+		<div class="container">
+			<div class="row">
+				<div class="row">
+				
+				<form class="woocommerce-ordering" action="/shop/category" method="POST" style="float: right;">
+					หมวดหมู่: 
+					<select id="client_id" name="category" class="prosuct-qty">
+						<option value="menu_order" selected="selected" >ทั้งหมด</option>
+						<option value="notebook">Notebook</option>
+						<option value="monitor">Monitor</option>
+						<option value="keyboard">Keyboard</option>
+						<option value="all">ทั้งหมด</option>
+					</select>
+				</form>
+			</div>
+				<% if (prods.length > 0) { %> 
+					<% prods.map((product, index) => { %>
+				<div class="col-md-3 shop_box"><a href="single.html"></a>
+					<img src="<%- product.img_path%>" class="img-responsive" alt=""/>
+					<!-- <span class="new-box">
+						<span class="new-label">New</span>
+					</span>
+					<span class="sale-box">
+						<span class="sale-label">Sale!</span>
+					</span> -->
+					<div class="shop_desc" style="height: 200px;">
+						<div style="height: 70%;">
+						<h3><a href="#"><b><%- product.product_name%></b></a></h3>
+						<!-- <span class="reducedfrom">฿</span> -->
+						</div>
+						<div style="height: 10%;">
+						<span class="actual">฿<%- product.price%></span><br>
+						</div>
+						<ul class="buttons">
+							<form action="/addcart" method="POST" id="addcart">
+								<input type="hidden" name="product_id" value="<%- product._id %>">
+								<input type="hidden" name="product_name" value="<%- product.product_name %>">
+								<input type="hidden" name="description" value="<%- product.description %>">
+								<input type="hidden" name="price" value="<%- product.price %>">
+								<input type="hidden" name="amount" value="<%- product.amount %>">
+								<input type="hidden" name="img_path" value="<%- product.img_path %>">
+								<input type="hidden" name="category" value="<%- product.category %>">
+								<li class="cart"><a href="#" onclick="document.getElementById('addcart').submit()">Add To Cart</a></li>
+							</form>
+							<li class="shop_btn"><a href="<%- '/shop/detail/'+product._id%>">Read More</a></li>
+							<div class="clear"> </div>
+					    </ul>
+				    </div>
+				</a></div>
+				<% }) %> 
+                    <% } else   { %>
+                    <h1>No Products Found!</h1>
+                    <% } %>
+			</div>
+		 </div>
+	   </div>
+	  </div>
+      <%- include('../includes/end.ejs') %>
+</body>	
+<script type="text/javascript">
+	var select = document.getElementById('client_id');
+	select.addEventListener('change', function() {
+	  this.form.submit();
+	}, false);
+  </script>
+</html>
+

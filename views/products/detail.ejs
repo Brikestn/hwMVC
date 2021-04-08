@@ -1,0 +1,64 @@
+<%- include('../includes/head.ejs') %>
+
+   <div class="main">
+    <div class="shop_top">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-9 single_left">
+                <% if (errorMessage) { %>
+                    <div class="alert alert-warning" role="alert">
+                        <%= errorMessage[0].param + ': '+ errorMessage[0].msg %>
+                    </div>
+                    <% } %>
+                 <div class="single_image">
+                       <ul id="etalage">
+                                  <img class="etalage_thumb_image" src="<%= img_path %>" />
+                      </ul>
+                      </div>
+                      <!-- end product_slider -->
+                      <div class="single_right">
+                        <input type="hidden" name="product_id" value="<%- product_id %>">
+                          <h3><%= product_name %></h3>
+                          <p class="m_10"><%= description %></p>
+                          <div class="btn_form">
+                             <form>
+                               <input type="submit" value="buy now" title="">
+                            </form>
+                          </div>
+                      </div>
+                      <div class="clear"> </div>
+              </div>
+              <div class="col-md-3">
+                <div class="box-info-product">
+                  <p class="price2">฿<%- price %></p>
+                         <ul class="prosuct-qty">
+                              <span>Quantity:</span>
+                              <select>
+                                  <option>1</option>
+                              </select>
+                          </ul>
+                          <form action="/addcart" method="POST" id="addcart">
+                            <input type="hidden" name="product_id" value="<%- product_id %>">
+                            <input type="hidden" name="product_name" value="<%= product_name %>">
+                            <input type="hidden" name="description" value="<%= description %>">
+                            <input type="hidden" name="price" value="<%- price %>">
+                            <input type="hidden" name="amount" value="<%- amount %>">
+                            <input type="hidden" name="img_path" value="<%= img_path %>">
+                            <input type="hidden" name="category" value="<%= category %>">
+                            <button type="submit" name="Submit" class="exclusive">
+                              <span>Add to cart</span>
+                           </button>
+                            <!-- <li class="cart"><a href="#" onclick="document.getElementById('addcart').submit()">Add To Cart</a></li> -->
+                          </form>
+                          
+                 </div>
+             </div>
+          </div>		
+          </div>	
+       </div>
+     </div>
+    </div>
+
+            <%- include('../includes/end.ejs') %>
+        </body>	
+        </html>
